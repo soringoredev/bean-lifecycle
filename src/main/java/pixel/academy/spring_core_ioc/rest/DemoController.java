@@ -10,25 +10,17 @@ import pixel.academy.spring_core_ioc.common.Chef;
 public class DemoController {
 
     private Chef myChef;
-    private Chef secondChef;
 
     //setter
     @Autowired
-    public DemoController(@Qualifier("mexicanChef") Chef theChef,
-                          @Qualifier("mexicanChef") Chef theSecondChef) {
+    public DemoController(@Qualifier("mexicanChef") Chef theChef) {
         myChef = theChef;
-        secondChef = theSecondChef;
         System.out.println("In constructor: " + getClass().getSimpleName());
     }
 
     @GetMapping("/dailyrecipe")
     public String getDailyRecipe() {
         return myChef.getDailyRecipe();
-    }
-
-    @GetMapping("/check")
-    public String check() {
-        return "Comparing beans: myChef == secondChef, " + (myChef == secondChef);
     }
 
 }
